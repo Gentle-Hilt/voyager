@@ -1,5 +1,6 @@
 package cafe.adriel.voyager.sample.tabNavigation
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -30,9 +31,11 @@ class TabNavigationActivity : ComponentActivity() {
         }
     }
 
+    @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     @Composable
     fun Content() {
         TabNavigator(
+            onBackPressed = null,
             HomeTab,
             tabDisposable = {
                 TabDisposable(
