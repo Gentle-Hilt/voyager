@@ -2,8 +2,6 @@ package cafe.adriel.voyager.navigator.lifecycle
 
 import cafe.adriel.voyager.core.annotation.ExperimentalVoyagerApi
 import cafe.adriel.voyager.core.concurrent.ThreadSafeMap
-import cafe.adriel.voyager.core.lifecycle.ScreenDisposable
-import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.Navigator
 import kotlin.reflect.KType
 import kotlin.reflect.typeOf

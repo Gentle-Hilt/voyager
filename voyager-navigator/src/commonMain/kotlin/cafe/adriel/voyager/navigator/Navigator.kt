@@ -2,7 +2,6 @@ package cafe.adriel.voyager.navigator
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.ProvidableCompositionLocal
 import androidx.compose.runtime.currentCompositeKeyHash
 import androidx.compose.runtime.derivedStateOf
@@ -14,7 +13,6 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import cafe.adriel.voyager.core.annotation.InternalVoyagerApi
 import cafe.adriel.voyager.core.concurrent.ThreadSafeMap
 import cafe.adriel.voyager.core.concurrent.ThreadSafeSet
-import cafe.adriel.voyager.core.lifecycle.DisposableEffectIgnoringConfiguration
 import cafe.adriel.voyager.core.lifecycle.MultipleProvideBeforeScreenContent
 import cafe.adriel.voyager.core.lifecycle.ScreenLifecycleStore
 import cafe.adriel.voyager.core.lifecycle.getNavigatorScreenLifecycleProvider
@@ -28,7 +26,6 @@ import cafe.adriel.voyager.navigator.internal.LocalNavigatorStateHolder
 import cafe.adriel.voyager.navigator.internal.NavigatorBackHandler
 import cafe.adriel.voyager.navigator.internal.NavigatorDisposableEffect
 import cafe.adriel.voyager.navigator.internal.StepDisposableEffect
-import cafe.adriel.voyager.navigator.internal.disposeNavigator
 import cafe.adriel.voyager.navigator.internal.rememberNavigator
 import cafe.adriel.voyager.navigator.lifecycle.NavigatorKey
 
@@ -109,7 +106,7 @@ public fun Navigator(
 public class Navigator @InternalVoyagerApi constructor(
     screens: List<Screen>,
     @InternalVoyagerApi public val key: String,
-    private val stateHolder: SaveableStateHolder,
+    public val stateHolder: SaveableStateHolder,
     public val disposeBehavior: NavigatorDisposeBehavior,
     public val parent: Navigator? = null
 ) : Stack<Screen> by screens.toMutableStateStack(minSize = 1) {

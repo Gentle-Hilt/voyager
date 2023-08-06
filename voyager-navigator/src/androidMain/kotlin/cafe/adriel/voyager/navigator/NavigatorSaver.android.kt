@@ -13,7 +13,7 @@ public fun parcelableNavigatorSaver(): NavigatorSaver<Any> = NavigatorSaver { _,
         save = { navigator ->
             val screenAsParcelables = navigator.items.filterIsInstance<Parcelable>()
 
-            if(navigator.items.size > screenAsParcelables.size) {
+            if (navigator.items.size > screenAsParcelables.size) {
                 val screensNotParcelable = navigator.items.filterNot { screen -> screenAsParcelables.any { screen == it } }
                     .map { it::class.simpleName }
                     .joinToString()

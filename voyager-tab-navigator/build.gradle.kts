@@ -19,6 +19,7 @@ kotlin {
                 api(projects.voyagerNavigator)
                 compileOnly(compose.runtime)
                 compileOnly(compose.ui)
+                implementation(libs.coroutines)
             }
         }
 
@@ -26,6 +27,18 @@ kotlin {
             dependencies {
                 implementation(libs.junit.api)
                 runtimeOnly(libs.junit.engine)
+            }
+        }
+
+        val androidMain by getting {
+            dependencies {
+                api(projects.voyagerCore)
+                api(projects.voyagerNavigator)
+                compileOnly(compose.runtime)
+                compileOnly(compose.ui)
+
+                implementation(libs.coroutines)
+                implementation(libs.compose.activity)
             }
         }
     }

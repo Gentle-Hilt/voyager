@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.lifecycle.LifecycleEffect
 import cafe.adriel.voyager.navigator.Navigator
-import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
+import cafe.adriel.voyager.navigator.tab.LocalAndroidTabNavigator
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.sample.basicNavigation.BasicNavigationScreen
 import cafe.adriel.voyager.transitions.SlideTransition
@@ -61,7 +61,7 @@ private fun InnerTabNavigation() {
 private fun RowScope.TabNavigationButton(
     tab: Tab
 ) {
-    val tabNavigator = LocalTabNavigator.current
+    val tabNavigator = LocalAndroidTabNavigator.current
 
     Button(
         enabled = tabNavigator.current.key != tab.key,

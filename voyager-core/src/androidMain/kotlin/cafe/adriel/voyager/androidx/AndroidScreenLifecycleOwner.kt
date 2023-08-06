@@ -222,6 +222,5 @@ public class AndroidScreenLifecycleOwner private constructor() :
         public fun get(screen: Screen): ScreenLifecycleOwner {
             return ScreenLifecycleStore.register(screen) { AndroidScreenLifecycleOwner() }
         }
-
     }
 }

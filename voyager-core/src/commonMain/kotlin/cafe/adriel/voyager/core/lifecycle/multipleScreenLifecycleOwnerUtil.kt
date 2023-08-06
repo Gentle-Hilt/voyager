@@ -13,7 +13,7 @@ public fun MultipleProvideBeforeScreenContent(
     provideSaveableState: @Composable (suffixKey: String, content: @Composable () -> Unit) -> Unit,
     content: @Composable () -> Unit,
 ) {
-    if(screenLifecycleContentProviders.isNotEmpty()) {
+    if (screenLifecycleContentProviders.isNotEmpty()) {
         val copy = screenLifecycleContentProviders.toMutableList()
         RecursiveProvideBeforeScreenContent(
             screenLifecycleContentProvider = copy.removeFirst(),
@@ -34,7 +34,7 @@ private fun RecursiveProvideBeforeScreenContent(
     nextOrNull: () -> ScreenLifecycleContentProvider?,
 ) {
     val next = remember(screenLifecycleContentProvider, provideSaveableState, content, nextOrNull) { nextOrNull() }
-    if(next != null) {
+    if (next != null) {
         val recursiveContent = @Composable {
             RecursiveProvideBeforeScreenContent(
                 screenLifecycleContentProvider = next,
@@ -50,7 +50,6 @@ private fun RecursiveProvideBeforeScreenContent(
         ) {
             recursiveContent()
         }
-
     } else {
         screenLifecycleContentProvider.ProvideBeforeScreenContent(
             provideSaveableState = { suffixKey, content ->
