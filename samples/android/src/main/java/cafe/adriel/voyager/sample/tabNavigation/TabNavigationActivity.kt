@@ -46,7 +46,7 @@ class TabNavigationActivity : ComponentActivity() {
 
         AndroidTabNavigator(
             noBackStackGoToThePreviousTab = true,
-            noBackStackGoToTheInitialTab = false,
+            /* noBackStackGoToTheInitialTab = true*/
             titlesToTabs = tabTitlesToTabs,
             initialTab = HomeTab,
             tabDisposable = {

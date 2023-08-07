@@ -39,6 +39,7 @@ kotlin {
 
                 implementation(libs.coroutines)
                 implementation(libs.compose.activity)
+                implementation(libs.compose.lifecycle.runtime)
             }
         }
     }

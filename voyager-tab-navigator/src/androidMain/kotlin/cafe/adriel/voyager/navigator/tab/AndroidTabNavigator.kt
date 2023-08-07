@@ -5,12 +5,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.ProvidableCompositionLocal
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.SaveableStateHolder
 import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import cafe.adriel.voyager.core.lifecycle.DisposableEffectIgnoringConfiguration
 import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.NavigatorDisposeBehavior
@@ -50,7 +50,7 @@ public fun AndroidTabNavigator(
             AndroidTabNavigator(navigator, scope)
         }
 
-        val tabHistory by tabNavigator.tabHistory.collectAsState()
+        val tabHistory by tabNavigator.tabHistory.collectAsStateWithLifecycle()
 
         tabDisposable?.invoke(tabNavigator)
 
@@ -117,10 +117,19 @@ public class AndroidTabNavigator internal constructor(
 
     public fun updateTabHistory(title: String) {
         tabHistory.value = tabHistory.value + title
+
+        TabHistory.tabList = TabHistory.tabList + title
     }
 
     public fun popTab() {
         tabHistory.value = tabHistory.value.dropLast(1)
+
+        TabHistory.tabList = TabHistory.tabList.dropLast(1)
+        tabHistory.value = TabHistory.tabList
+    }
+
+    public fun syncTabHistory() {
+        tabHistory.value = TabHistory.tabList
     }
 
     public fun getTabByTitle(
@@ -137,6 +146,7 @@ public class AndroidTabNavigator internal constructor(
         tab: Tab = current,
         content: @Composable () -> Unit
     ) {
+        syncTabHistory()
         navigator.saveableState(key, tab, content = content)
     }
 }
