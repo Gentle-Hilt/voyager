@@ -57,6 +57,7 @@ compose-material = { module = "androidx.compose.material:material", version.ref 
 compose-materialIcons = { module = "androidx.compose.material:material-icons-core", version.ref = "composeMaterial" }
 compose-activity = { module = "androidx.activity:activity-compose", version.ref = "composeActivity" }
 compose-lifecycle-runtime = {module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "composeLifecycle"}
+whatwrongwiththis =  {module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "composeLifecycle"}
 rxjava = { module = "io.reactivex.rxjava3:rxjava", version.ref = "rxjava" }
 
 multiplatformUuid = { module = "com.benasher44:uuid", version.ref = "multiplatformUuid" }
