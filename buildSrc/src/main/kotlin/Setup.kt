@@ -18,10 +18,10 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 private fun BaseExtension.setupAndroid() {
-    compileSdkVersion(33)
+    compileSdkVersion(34)
     defaultConfig {
         minSdk = 21
-        targetSdk = 33
+        targetSdk = 34
 
         versionCode = 12
         versionName = "12.0"
@@ -83,7 +83,7 @@ fun Project.setupModuleForComposeMultiplatform(
                 }
             }
 
-            android {
+            androidTarget {
                 publishAllLibraryVariants()
             }
             jvm("desktop")

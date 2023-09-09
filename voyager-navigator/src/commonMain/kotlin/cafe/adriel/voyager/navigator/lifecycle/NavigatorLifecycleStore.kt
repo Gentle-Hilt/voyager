@@ -20,7 +20,7 @@ public object NavigatorLifecycleStore {
     @ExperimentalVoyagerApi
     public inline fun <reified T : NavigatorDisposable> register(
         navigator: Navigator,
-        noinline factory: (NavigatorKey) -> T,
+        noinline factory: (NavigatorKey) -> T
     ): T {
         return register(navigator, typeOf<T>(), factory) as T
     }
@@ -29,7 +29,7 @@ public object NavigatorLifecycleStore {
     internal fun <T : NavigatorDisposable> register(
         navigator: Navigator,
         screenDisposeListenerType: KType,
-        factory: (NavigatorKey) -> T,
+        factory: (NavigatorKey) -> T
     ): NavigatorDisposable {
         return owners.getOrPut(navigator.key) {
             ThreadSafeMap<KType, NavigatorDisposable>().apply {

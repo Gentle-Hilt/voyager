@@ -63,7 +63,7 @@ public fun Navigator(
         disposeBehavior = disposeBehavior,
         onBackPressed = onBackPressed,
         key = key,
-        content = content,
+        content = content
     )
 }
 
@@ -73,7 +73,7 @@ public fun Navigator(
     disposeBehavior: NavigatorDisposeBehavior = NavigatorDisposeBehavior(),
     onBackPressed: OnBackPressed = { true },
     key: String = compositionUniqueId(),
-    content: NavigatorContent = { CurrentScreen() },
+    content: NavigatorContent = { CurrentScreen() }
 ) {
     require(screens.isNotEmpty()) { "Navigator must have at least one screen" }
     require(key.isNotEmpty()) { "Navigator key can't be empty" }
@@ -88,7 +88,7 @@ public fun Navigator(
         }
 
         CompositionLocalProvider(
-            LocalNavigator provides navigator,
+            LocalNavigator provides navigator
         ) {
             if (disposeBehavior.disposeSteps) {
                 StepDisposableEffect(navigator)
@@ -191,7 +191,7 @@ public class Navigator @InternalVoyagerApi constructor(
 
 public data class NavigatorDisposeBehavior(
     val disposeNestedNavigators: Boolean = true,
-    val disposeSteps: Boolean = true,
+    val disposeSteps: Boolean = true
 )
 
 @InternalVoyagerApi

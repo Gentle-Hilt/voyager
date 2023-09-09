@@ -1,5 +1,6 @@
 package cafe.adriel.voyager.navigator.bottomSheet
 
+import androidx.compose.animation.core.AnimationSpec
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.material.ExperimentalMaterialApi
@@ -8,6 +9,7 @@ import androidx.compose.material.ModalBottomSheetDefaults
 import androidx.compose.material.ModalBottomSheetLayout
 import androidx.compose.material.ModalBottomSheetState
 import androidx.compose.material.ModalBottomSheetValue
+import androidx.compose.material.SwipeableDefaults
 import androidx.compose.material.contentColorFor
 import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
@@ -45,7 +47,9 @@ public fun BottomSheetNavigator(
     sheetElevation: Dp = ModalBottomSheetDefaults.Elevation,
     sheetBackgroundColor: Color = MaterialTheme.colors.surface,
     sheetContentColor: Color = contentColorFor(sheetBackgroundColor),
+    sheetGesturesEnabled: Boolean = true,
     skipHalfExpanded: Boolean = true,
+    animationSpec: AnimationSpec<Float> = SwipeableDefaults.AnimationSpec,
     key: String = compositionUniqueId(),
     sheetContent: BottomSheetNavigatorContent = { CurrentScreen() },
     content: BottomSheetNavigatorContent
@@ -54,16 +58,14 @@ public fun BottomSheetNavigator(
     val coroutineScope = rememberCoroutineScope()
     val sheetState = rememberModalBottomSheetState(
         initialValue = ModalBottomSheetValue.Hidden,
-        skipHalfExpanded = skipHalfExpanded,
-        confirmStateChange = { state ->
-            when (state) {
-                ModalBottomSheetValue.Hidden -> {
-                    hideBottomSheet?.invoke()
-                    false
-                }
-                else -> true
+        confirmValueChange = { state ->
+            if (state == ModalBottomSheetValue.Hidden) {
+                hideBottomSheet?.invoke()
             }
-        }
+            true
+        },
+        skipHalfExpanded = skipHalfExpanded,
+        animationSpec = animationSpec
     )
 
     Navigator(HiddenBottomSheetScreen, onBackPressed = null, key = key) { navigator ->
@@ -82,6 +84,7 @@ public fun BottomSheetNavigator(
                 sheetElevation = sheetElevation,
                 sheetBackgroundColor = sheetBackgroundColor,
                 sheetContentColor = sheetContentColor,
+                sheetGesturesEnabled = sheetGesturesEnabled,
                 sheetContent = {
                     BottomSheetNavigatorBackHandler(bottomSheetNavigator, sheetState, hideOnBackPress)
                     sheetContent(bottomSheetNavigator)
@@ -113,8 +116,10 @@ public class BottomSheetNavigator internal constructor(
 
     public fun hide() {
         coroutineScope.launch {
-            sheetState.hide()
-            replaceAll(HiddenBottomSheetScreen)
+            if (isVisible) {
+                sheetState.hide()
+                replaceAll(HiddenBottomSheetScreen)
+            }
         }
     }
 
