@@ -17,6 +17,7 @@ appCompat = "1.6.1"
 lifecycle = "2.6.1"
 composeCompiler = "1.5.7"
 composeActivity = "1.7.2"
+composeLifecycle = "2.6.1"
 composeAnimation = "1.5.0"
 composeMaterial = "1.5.0"
 composeRuntime = "1.5.0"
@@ -59,7 +60,7 @@ compose-material = { module = "androidx.compose.material:material", version.ref 
 compose-materialIcons = { module = "androidx.compose.material:material-icons-core", version.ref = "composeMaterial" }
 compose-activity = { module = "androidx.activity:activity-compose", version.ref = "composeActivity" }
 rxjava = { module = "io.reactivex.rxjava3:rxjava", version.ref = "rxjava" }
-
+whatwrongwiththis =  {module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "composeLifecycle"}
 multiplatformUuid = { module = "com.benasher44:uuid", version.ref = "multiplatformUuid" }
 
 junit-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit" }

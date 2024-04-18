@@ -26,8 +26,8 @@ private fun BaseExtension.setupAndroid() {
         minSdk = 21
         targetSdk = 34
 
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 15
+        versionName = "15.0"
     }
 }
 

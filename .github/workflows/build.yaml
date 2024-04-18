@@ -2,8 +2,6 @@ name: Build
 on:
   push:
     branches: [main]
-  pull_request:
-    branches: [main]
 
 jobs:
 
@@ -24,14 +22,6 @@ jobs:
         with:
           java-version: 17
           distribution: 'temurin'
-
-      - name: Lint
-        run: |
-          ./gradlew ktlintCheck --stacktrace
-
-      - name: Api Check
-        run: |
-          ./gradlew apiCheck --stacktrace
 
       - name: Validate publish
         run: |

@@ -105,7 +105,7 @@ public fun Navigator(
 public class Navigator @InternalVoyagerApi constructor(
     screens: List<Screen>,
     @InternalVoyagerApi public val key: String,
-    private val stateHolder: SaveableStateHolder,
+    public val stateHolder: SaveableStateHolder,
     public val disposeBehavior: NavigatorDisposeBehavior,
     public val parent: Navigator? = null
 ) : Stack<Screen> by screens.toMutableStateStack(minSize = 1) {
